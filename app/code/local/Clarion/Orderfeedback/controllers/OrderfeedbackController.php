@@ -72,7 +72,7 @@ class Clarion_Orderfeedback_OrderfeedbackController extends Mage_Core_Controller
         
      
         
-        if(Mage::helper("orderfeedback")->getSenderemailgetSenderemail())
+        if(Mage::helper("orderfeedback")->getSenderemail())
         {
              $senderemail = Mage::helper("orderfeedback")->getSenderemail();
         }else{
@@ -139,26 +139,18 @@ class Clarion_Orderfeedback_OrderfeedbackController extends Mage_Core_Controller
             $emailTemplate->setSenderEmail($sender_email);
             $emailTemplate->setTemplateSubject($email_subject);
             $emailTemplate->send($recipient_email, $recipient_name, $emailTemplateVariables);
-
             $emailed = true;
-            
             } catch(Exception $e) {
                 Mage::getSingleton('core/session')->addError(Mage::helper('orderfeedback')->__('Unable to send message at this time. Please, try later.'));
                 $this->_redirectReferer();
                 return;
             }
-           // }//if email enabled
-            
             if($emailed)
             {
             $success_message = Mage::helper("orderfeedback")->getSucessmessage();
             Mage::getSingleton('core/session')->addSuccess(Mage::helper('orderfeedback')->__($success_message));
-            //$this->_redirectReferer();
-           // return;
             }
-            
         /////////////////email functinality /////////////////
-        
         if($model->save())
         {
         Mage::getSingleton('core/session')->addSuccess(Mage::helper('orderfeedback')->__('Item was successfully saved'));
@@ -227,22 +219,13 @@ class Clarion_Orderfeedback_OrderfeedbackController extends Mage_Core_Controller
          
             $emailTemplate  = Mage::getModel('core/email_template')
                         ->loadDefault('order_feedback_email_customer');                                
-
             $sender_name =  $senderename;
-
             $recipient_name = $recipient_name; //reciver name
-            
             $reci_one =  $senderemail;
             $recipient_email = array($recipient_emailzero,$reci_one);
-            
-            //print_r($recipient_email);
-            //die;
-            //$recipient_email = 'support@magerevol.com';
-            
             $sender_email = $senderemail;
             //Create an array of variables to assign to template
             $emailTemplateVariables = array();
-
             $emailTemplateVariables['sender_name'] = $sender_name;
             $emailTemplateVariables['sender_email'] = $sender_email;
             $emailTemplateVariables['email_subject'] = Mage::helper("orderfeedback")->getEmailsubCustomer();
@@ -250,9 +233,6 @@ class Clarion_Orderfeedback_OrderfeedbackController extends Mage_Core_Controller
             $emailTemplateVariables['receive_name'] = $recipient_name;
             $emailTemplateVariables['logo_url'] = $logourl;
             $emailTemplateVariables['store_name'] = $storename;
-            
-            
-
             $processedTemplate = $emailTemplate->getProcessedTemplate($emailTemplateVariables);
 
             $email_subject = Mage::helper("orderfeedback")->getEmailsubCustomer();
@@ -264,9 +244,7 @@ class Clarion_Orderfeedback_OrderfeedbackController extends Mage_Core_Controller
             $emailTemplate->setSenderEmail($sender_email);
             $emailTemplate->setTemplateSubject($email_subject);
             $emailTemplate->send($recipient_email, $recipient_name, $emailTemplateVariables);
-
             $emailed = true;
-            
             } catch(Exception $e) {
                 Mage::getSingleton('core/session')->addError(Mage::helper('orderfeedback')->__('Unable to send message at this time. Please, try later.'));
                 $this->_redirectReferer();
