@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/orderfeedback_extension",
+    "type": "magento-module",
+    "license": "Open-Software-License-(OSL)",
+    "homepage": "",
+    "description": "Now You Can send the feedback according to order.",
+    "authors": [
+    {
+        "name": "kushagra daharwal",
+        "email": "kushagra.daharwal@clariontechnologies.co.in"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
