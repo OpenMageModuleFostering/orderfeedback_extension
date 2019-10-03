@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/orderfeedback_extension",
+    "name": "openmage-module-fostering\/orderfeedback_extension",
     "type": "magento-module",
-    "license": "Open-Software-License-(OSL)",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Now You Can send the feedback according to order.",
     "authors": [
